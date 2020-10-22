@@ -1,7 +1,7 @@
 ![Realm](https://github.com/realm/realm-js/raw/master/logo.png)
 
 Realm is a mobile database that runs directly inside phones, tablets or wearables.
-This project hosts the JavaScript versions of [Realm](https://realm.io/). Currently we support React Native (both iOS & Android), Node.js and Electron (on Windows, MacOS and Linux)
+This project hosts the JavaScript versions of [Realm Mobile](https://docs.mongodb.com/realm/get-started/introduction-mobile/) and [Realm Web](https://docs.mongodb.com/realm/get-started/introduction-web/). Currently we support React Native (both iOS & Android), Node.js and Electron (on Windows, MacOS and Linux). Raspberry Pi 2, 3, or 4 running Raspberry Pi OS (formerly Raspbian) are supported (32 bit only).
 
 ## Features
 
@@ -12,7 +12,7 @@ This project hosts the JavaScript versions of [Realm](https://realm.io/). Curren
 
 ## Getting Started
 
-Please see the detailed instructions in our docs to use [Realm JavaScript for node.js](https://docs.mongodb.com/realm/node/) and [Realm JavaScript for React Native](https://docs.mongodb.com/realm/react-native/). Please notice that currently only node.js version 10 or later (excluding 11) are supported.
+Please see the detailed instructions in our docs to use [Realm JavaScript for node.js](https://docs.mongodb.com/realm/node/) and [Realm JavaScript for React Native](https://docs.mongodb.com/realm/react-native/). Please notice that currently only node.js version 10 or later are supported. Moreover, you might also see the detailed instructions for [Realm Web](https://docs.mongodb.com/realm/web/quickstart/).
 
 ## Documentation
 
@@ -29,17 +29,17 @@ The API reference is located at [docs.mongodb.com/realm-sdks/js/latest/](https:/
 
 ## Building Realm
 
-In case you don't want to use the precompiled version on npm, you can build Realm yourself from source. You’ll need an Internet connection the first time you build in order to download the core library.
+In case you don't want to use the precompiled version on `npm`, you can build Realm yourself from source. You’ll need an Internet connection the first time you build in order to download the core library.
 
 Prerequisites:
-* Xcode 11+
+* Xcode 11+ (on MacOS) or just a C++ compiler supporting C++17
 * node.js version 10.19 or later
-* nvm (on Mac and Linux)
-* cocoapods (on Mac)
+* nvm (on MacOS and Linux)
+* cocoapods (on MacOS)
 * Android SDK 23+
 * [Android NDK 21](https://developer.android.com/ndk/downloads/index.html)
 
-Clone RealmJS repository:
+Clone Realm JavaScript repository:
 
 ```
 git clone https://github.com/realm/realm-js.git
@@ -47,7 +47,7 @@ cd realm-js
 git submodule update --init --recursive
 ```
 
-Note: On Windows the RealmJS repo should be cloned with symlinks enabled
+Note: On Windows the Realm JavaScript repository should be cloned with symlinks enabled
 ```
 #run in elevated command prompt
 git clone -c core.symlinks=true https://github.com/realm/realm-js
@@ -81,7 +81,7 @@ Note: If you have cloned the repo previously make sure you remove your node_modu
 * The compiled version of the Android module is here: `<project-root>/android`
 
 ### Building for nodejs:
-Be sure you have python2.7 as the default python. 3.x won't work, and it's not enough to use `--python=python2.7` as parameter to npm.
+Be sure you have Python2.7 as the default Python. 3.x won't work, and it's not enough to use `--python=python2.7` as parameter to npm.
 For example you can use Homebrew to install it.
 ```
 brew install python@2
@@ -218,8 +218,8 @@ See [CONTRIBUTING.md](https://github.com/realm/realm-js/blob/master/CONTRIBUTING
 
 ## License
 
-Realm JS is published under a mix of the Apache License 2.0 and the Realm Platform Extensions License.
-Realm Core is published under the Apache 2.0 license and is available
+Realm JavaScript is published under a mix of the Apache License v2.0 and the Realm Platform Extensions License.
+Realm Core is published under the Apache License v2.0 and is available
 [here](https://github.com/realm/realm-core).
 
 **This product is not being made available to any person located in Cuba, Iran,
@@ -233,3 +233,5 @@ not eligible to receive the product under U.S. law.**
 **_And if you don't like it, please let us know what you would like improved, so we can fix it!_**
 
 ![analytics](https://ga-beacon.appspot.com/UA-50247013-2/realm-js/README?pixel)
+
+![N-APIv4](https://github.com/nodejs/abi-stable-node/blob/doc/assets/N-API%20v4%20Badge.svg "N-API v4")
