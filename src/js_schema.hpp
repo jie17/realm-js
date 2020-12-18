@@ -111,6 +111,9 @@ static inline void parse_property_type(StringData object_name, Property& prop, S
     else if (type == "objectId") {
         prop.type |= PropertyType::ObjectId;
     }
+    else if (type == "uuid") {
+        prop.type |= PropertyType::UUID;
+    }
     else if (type == "list") {
         if (prop.object_type == "bool") {
             prop.type |= PropertyType::Bool | PropertyType::Array;
@@ -146,6 +149,10 @@ static inline void parse_property_type(StringData object_name, Property& prop, S
         }
         else if (prop.object_type == "objectId") {
             prop.type |= PropertyType::ObjectId | PropertyType::Array;
+            prop.object_type = "";
+        }
+        else if (prop.object_type == "uuid") {
+            prop.type |= PropertyType::UUID | PropertyType::Array;
             prop.object_type = "";
         }
         else {

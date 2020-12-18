@@ -138,6 +138,7 @@ struct Value {
     static bool is_binary(ContextType, const ValueType &);
     static bool is_valid(const ValueType &);
     static bool is_bson(ContextType, const ValueType &);
+    static bool is_uuid(ContextType, const ValueType &);
 
     static bool is_valid_for_property(ContextType, const ValueType&, const Property&);
     static bool is_valid_for_property_type(ContextType, const ValueType&, realm::PropertyType type, StringData object_type);
@@ -170,6 +171,7 @@ struct Value {
     static double to_number(ContextType, const ValueType &);
     static Decimal128 to_decimal128(ContextType, const ValueType &);
     static ObjectId to_object_id(ContextType, const ValueType &);
+    static UUID to_uuid(ContextType, const ValueType &);
     static ObjectType to_object(ContextType, const ValueType &);
     static String<T> to_string(ContextType, const ValueType &);
     static OwnedBinaryData to_binary(ContextType, ValueType);
@@ -195,6 +197,7 @@ struct Value {
     VALIDATED(OwnedBinaryData, binary)
     VALIDATED(Decimal128, decimal128)
     VALIDATED(ObjectId, object_id)
+    VALIDATED(UUID, uuid)
 
 #undef VALIDATED
 };
@@ -315,6 +318,7 @@ struct Object {
     VALIDATED(ObjectType, object)
     VALIDATED(String<T>, string)
     VALIDATED(ObjectType, ObjectId)
+    VALIDATED(ObjectType, UUID)
 
 #undef VALIDATED
 
@@ -327,7 +331,7 @@ struct Object {
     }
     static ValueType call_method(ContextType ctx, const ObjectType &object, const String<T> &name, const std::initializer_list<ValueType> &arguments) {
         return call_method(ctx, object, name, (uint32_t)arguments.size(), arguments.begin());
-    }
+        }
 
     static ObjectType create_empty(ContextType);
     static ObjectType create_obj(ContextType ctx, std::initializer_list<std::pair<String<T>, ValueType>> values) {
@@ -491,7 +495,7 @@ inline bool Value<T>::is_valid_for_property_type(ContextType context, const Valu
             case PropertyType::Mixed:
                 throw std::runtime_error("'Mixed' type support is not implemented yet");
             case PropertyType::UUID:
-                throw std::runtime_error("'UUID' type support is not implemented yet");
+                return is_uuid(context, value);
             default:
                 REALM_UNREACHABLE();
         }
@@ -606,11 +610,11 @@ inline typename T::Value Value<T>::from_mixed(typename T::Context ctx, const Mix
     throw std::invalid_argument("Value not convertible.");
 }
 
-template<typename T>
+/*template<typename T>
 inline typename T::Value Value<T>::from_uuid(typename T::Context ctx, const UUID& value) {
     throw std::runtime_error("'UUID' type support is not implemented yet");
 }
-
+*/
 template<typename T>
 inline typename T::Value Value<T>::from_objkey(typename T::Context ctx, const ObjKey& value) {
     throw std::runtime_error("'Mixed' type support is not implemented yet");
